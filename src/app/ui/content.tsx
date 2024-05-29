@@ -16,7 +16,7 @@ const Content = () => {
   return (
     <div className="">
       <div className="flex justify-center items-center mt-4 text-white">
-        {audio ? "" : "Şarkıyı açarak ilerlemeye başlayabilirsin"}
+        {audio ? "" : "Şarkıyı açarak ilerlemeye devam edebilirsin"}
       </div>
       <audio
         ref={audi}
