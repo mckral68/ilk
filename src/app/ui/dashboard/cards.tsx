@@ -24,12 +24,8 @@ export default async function CardWrapper() {
               height: `100px`,
             }}
           ></div>
-          <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">
-            {m.answer}
-          </p>
-          <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">
-            {m.message}
-          </p>
+          <p className="text-sm text-gray-400 sm:rotate-0">{m.answer}</p>
+          <p className="text-sm text-gray-400 sm:rotate-0">{m.message}</p>
         </div>
       ))}
     </>
