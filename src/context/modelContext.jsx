@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 const ModelContext = createContext();
 export const ModelProvider = ({ children }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const values = { show, setShow };
   return (
     <ModelContext.Provider value={values}>{children}</ModelContext.Provider>

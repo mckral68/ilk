@@ -2,9 +2,16 @@
 import { useModel } from "../../context/modelContext";
 import { useFormik } from "formik";
 import validations from "./validation";
-import { createCookie } from "../lib/actions";
+import { createCookie, getCookie } from "../lib/actions";
+import { useEffect } from "react";
 function Modal() {
   const { setShow } = useModel();
+  useEffect(() => {
+    const cevap = getCookie("cevap").then((a) =>
+      a?.value === "A" ? setShow(false) : setShow(true)
+    );
+  }, [setShow]);
+
   const {
     handleSubmit,
     handleChange,
@@ -38,9 +45,9 @@ function Modal() {
           <div className="text-center">
             <h3 className="text-2xl font-bold ">Merhaba</h3>
             <div className="mt-2 px-7 py-3">
-              <h3 className="mb-4 font-semibold  dark:text-white">
+              <h2 className="mb-4 font-semibold  dark:text-white">
                 Sorunun cevabını işaretleyip kontrol edebilirsin.
-              </h3>
+              </h2>
               <ul className="text-sm font-medium  bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 {cevap.map((a) => (
                   <li
@@ -72,7 +79,7 @@ function Modal() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                className="px-4 py-2 bg-blue-900 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
               >
                 Kontrol Et
               </button>

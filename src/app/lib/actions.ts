@@ -59,3 +59,7 @@ export async function createMessage(prevState: State, formData: FormData) {
 export async function createCookie(data: any) {
   cookies().set("cevap", data);
 }
+export async function getCookie(data: string) {
+  const cevap = cookies().get(data);
+  return cevap;
+}

@@ -1,10 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { getCookie } from "@/app/lib/actions";
+import { useEffect, useRef, useState } from "react";
 
 const Content = () => {
   const audi = useRef<HTMLAudioElement>(null);
   const [audio, setAudio] = useState(false);
+  useEffect(() => {
+    getCookie("cevap").then((a) =>
+      a?.value === "A" ? setAudio(true) : setAudio(false)
+    );
+  }, [setAudio]);
   const pi = `Çölün kum taneleri arasında
   kayboluyorum serapların ortasında 
   gözlerimde, kulaklarımda kum yığınları
