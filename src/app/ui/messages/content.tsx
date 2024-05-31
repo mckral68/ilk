@@ -18,7 +18,7 @@ const Content = () => {
       <div className="flex justify-center items-center mt-4 text-white">
         {audio
           ? ""
-          : "Bravo doğru cevabı bildiğine göre şarkıyı açarak ilerlemeye devam edebilirsin"}
+          : "Bravo doğru cevap, ödül olarak aşağıdaki şarkıyı uygun gördük.Bakalım beğenecek misin?"}
       </div>
       <audio
         ref={audi}
