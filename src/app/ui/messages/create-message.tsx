@@ -18,7 +18,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
         {/* Answer */}
         <div className="mb-4">
           <label htmlFor="answer" className="mb-2 block text-sm font-medium">
-            Cevabını seç
+            Cevap seç
           </label>
           <div className="relative">
             <select
