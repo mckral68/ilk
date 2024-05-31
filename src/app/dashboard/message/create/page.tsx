@@ -10,7 +10,7 @@ export default async function Page() {
         breadcrumbs={[
           { label: "Mesajlar", href: "/dashboard/message" },
           {
-            label: "Mesaj oluştur",
+            label: "Mesaj Gönder",
             href: "/dashboard/message/create",
             active: true,
           },

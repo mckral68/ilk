@@ -7,9 +7,9 @@ const Content = () => {
   const audi = useRef<HTMLAudioElement>(null);
   const [audio, setAudio] = useState(false);
   useEffect(() => {
-    getCookie("cevap").then((a) =>
-      a?.value === "A" ? setAudio(true) : setAudio(false)
-    );
+    getCookie("cevap").then((a) => {
+      a?.value === "A" ? setAudio(true) : setAudio(false);
+    });
   }, [setAudio]);
   const pi = `Çölün kum taneleri arasında
   kayboluyorum serapların ortasında 

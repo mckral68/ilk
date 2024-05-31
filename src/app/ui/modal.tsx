@@ -2,15 +2,9 @@
 import { useModel } from "../../context/modelContext";
 import { useFormik } from "formik";
 import validations from "./validation";
-import { createCookie, getCookie } from "../lib/actions";
-import { useEffect } from "react";
+import { createCookie } from "../lib/actions";
 function Modal() {
   const { setShow } = useModel();
-  useEffect(() => {
-    const cevap = getCookie("cevap").then((a) =>
-      a?.value === "A" ? setShow(false) : setShow(true)
-    );
-  }, [setShow]);
 
   const {
     handleSubmit,

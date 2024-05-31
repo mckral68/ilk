@@ -4,8 +4,15 @@ import Header from "./ui/header";
 import Modal from "./ui/modal";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
+import { useEffect } from "react";
+import { getCookie } from "./lib/actions";
 export default function Home() {
   const { show, setShow } = useModel();
+  useEffect(() => {
+    getCookie("cevap").then((a) => {
+      a?.value === "A" ? setShow(false) : setShow(true);
+    });
+  }, [show, setShow]);
   return (
     <main className="bg-black text-white h-screen">
       <Header />
