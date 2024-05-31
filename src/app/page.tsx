@@ -5,7 +5,7 @@ import Modal from "./ui/modal";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
 export default function Home() {
-  const { show } = useModel();
+  const { show, setShow } = useModel();
   return (
     <main className="bg-black text-white h-screen">
       <Header />
@@ -14,7 +14,7 @@ export default function Home() {
       {show ? (
         ""
       ) : (
-        <div className="flex mt-4 justify-center">
+        <div className="flex justify-center pt-20">
           <Link
             className="p-2 w-1/4 border text-center rounded-lg bg-black"
             href={"dashboard/message/create"}

@@ -5,14 +5,18 @@ import { useRef, useState } from "react";
 const Content = () => {
   const audi = useRef<HTMLAudioElement>(null);
   const [audio, setAudio] = useState(false);
-  const pi = `İnsanlar duygu ve akıl arasında tutturdukları dengeyle ayakta kalır ve
-  yaşam denen yolda ilerler. Bunlardan birinin, kontrolü tamamen ele
-  geçirmesi felaketi getirebilir. Bu gerçek şöyle bir benzetmeyle tarif
-  edilebilir: Bir at arabasındayım ve bu araba güçlü iki at tarafından
-  çekiliyor. Atlardan biri aklın biri duygunun temsilcisi. Atlardan biri beni
-  sürekli yolun bir tarafına, öbürü diğer tarafına çekmeye çalışıyor.
-  Ben güvenli bir şekilde ilerleyebilmek için dizginleri sıkıp
-  ikisini de kontrol altında tutmaya çalışıyorum.Velhasıl kalp denen hassas organın içindeki hislere daha fazla duyarsız kalamadım ve bu satırları yazıp yazmamak, yanına gelip konuşmak arasında kaldım`;
+  const pi = `Çölün kum taneleri arasında
+  kayboluyorum serapların ortasında 
+  gözlerimde, kulaklarımda kum yığınları
+  incitmeden kokluyorum onları 
+  ama dokunamıyorum kum tanelerine, 
+  sessizce sîneme saklıyorum yeganemi,
+  ondan habersiz, ondan gizli
+  boyuyorum onu zihnimin binbir rengiyle
+  bembeyaz oluyor bir anda, sebeplice 
+  gömüyorum çâresizce kalbimin mezarlığına 
+  zihnimin ulaşılamaz dediği bir kum paresinin 
+  prangalı esâretini yaşıyor biricik gönlüm`;
   return (
     <div className="">
       <div className="flex justify-center items-center mt-4 text-white">

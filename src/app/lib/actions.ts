@@ -1,13 +1,15 @@
 "use server";
-
+import { cookies } from "next/headers";
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 const FormSchema = z.object({
   id: z.string(),
-  answer: z.string({ invalid_type_error: "Please select a answer" }),
-  message: z.string({ invalid_type_error: "Please select a message" }),
+  answer: z.string({ invalid_type_error: "Lütfen bir cevap seç" }),
+  message: z
+    .string({ invalid_type_error: "Please select a message" })
+    .min(20, "En az 20 karakter"),
   date: z.string(),
 });
 export type State = {
@@ -53,4 +55,7 @@ export async function createMessage(prevState: State, formData: FormData) {
   // Revalidate the cache for the Message page and redirect the user.
   revalidatePath("/dashboard/message");
   redirect("/dashboard/message");
+}
+export async function createCookie(data: any) {
+  cookies().set("cevap", data);
 }
