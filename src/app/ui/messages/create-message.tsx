@@ -1,112 +1,84 @@
 "use client";
-import { Messages } from "@/app/lib/definitions";
 import Link from "next/link";
-import {
-  CheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/outline";
-import { createMessage } from "@/app/lib/actions";
+import { Button } from "@/app/ui/button";
 import { useFormState } from "react-dom";
-import { Button } from "../button";
+import { createMessage } from "@/app/lib/actions";
+import { Messages } from "@/app/lib/definitions";
 export default function Form({ messages }: { messages: Messages[] }) {
-  const initialState = { message: null, errors: {} };
+  const initialState = { message: "", errors: {} };
   const [state, dispatch] = useFormState(createMessage, initialState);
-
+  const answers = [
+    { id: 1, value: "Hayatımda biri var" },
+    { id: 2, value: "Hayatımda biri yok,yine de istemiyorum" },
+    { id: 3, value: "Sınavdan sonra konuşabiliz." },
+  ];
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
-        {/* Customer Name */}
+        {/* Answer */}
         <div className="mb-4">
-          <label htmlFor="message" className="mb-2 block text-sm font-medium">
-            Başlık
+          <label htmlFor="answer" className="mb-2 block text-sm font-medium">
+            Cevabını seç
           </label>
           <div className="relative">
             <select
-              id="message"
-              name="messageId"
+              id="answer"
+              name="answer"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               defaultValue=""
-              aria-describedby="message-error"
+              aria-describedby="answer-error"
             >
               <option value="" disabled>
-                Bir Seçenek seç
+                Bir seçenek seç
               </option>
-              {messages.map((message) => (
-                <option key={message.id} value={message.id}>
-                  {message.answer}
+              {answers.map((m) => (
+                <option key={m.id} value={m.value}>
+                  {m.value}
                 </option>
               ))}
             </select>
-            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
-          <div id="customer-error" aria-live="polite" aria-atomic="true">
+          <div id="answer-error" aria-live="polite" aria-atomic="true">
             {state.errors?.answer &&
-              state.errors.message?.map((error: string) => (
+              state.errors.answer.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
               ))}
           </div>
         </div>
-        {/* Invoice Amount */}
-
-        {/* Invoice Status */}
-        <fieldset>
-          <legend className="mb-2 block text-sm font-medium">
-            Set the invoice status
-          </legend>
-          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
-              <div className="flex items-center">
-                <input
-                  id="pending"
-                  name="status"
-                  type="radio"
-                  value="pending"
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="pending"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
-                >
-                  Pending <ClockIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="paid"
-                  name="status"
-                  type="radio"
-                  value="paid"
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="paid"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white"
-                >
-                  Paid <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div id="paid" aria-live="polite" aria-atomic="true">
-                {state.errors?.answer &&
-                  state.errors.answer.map((error: string) => (
-                    <p className="mt-2 text-sm text-red-500" key={error}>
-                      {error}
-                    </p>
-                  ))}
-              </div>
+        {/* Invoice message */}
+        <div className="mb-4">
+          <label htmlFor="message" className="mb-2 block text-sm font-medium">
+            Mesajını gir
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Lütfen mesajını gir"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                aria-describedby="message-error"
+              />
+            </div>
+            <div id="message-error" aria-live="polite" aria-atomic="true">
+              {state.errors?.message &&
+                state.errors.message.map((error: string) => (
+                  <p className="mt-2 text-sm text-red-500" key={error}>
+                    {error}
+                  </p>
+                ))}
             </div>
           </div>
-        </fieldset>
+        </div>
       </div>
-      <div className="mt-6 flex justify-end gap-4">
+      <div className="mt-6 flex justify-center gap-4">
         <Link
-          href="/dashboard/invoices"
+          href="/dashboard/message"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          Cancel
+          Vazgeç
         </Link>
         <Button type="submit">Gönder</Button>
       </div>

@@ -25,12 +25,11 @@ export async function createMessage(prevState: State, formData: FormData) {
     answer: formData.get("answer"),
     message: formData.get("message"),
   });
-
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create Invoice.",
+      message: "Missing Fields. Failed to Create Message.",
     };
   }
 
@@ -42,58 +41,16 @@ export async function createMessage(prevState: State, formData: FormData) {
   try {
     await sql`
       INSERT INTO messages (answer, message, date)
-      VALUES (${answer}, ${message},  ${date})
+      VALUES (${answer}, ${message}, ${date})
     `;
   } catch (error) {
     // If a database error occurs, return a more specific error.
     return {
-      message: "Database Error: Failed to Create Message.",
+      message: "Database Error: Failed to Create message.",
     };
   }
 
-  // Revalidate the cache for the invoices page and redirect the user.
+  // Revalidate the cache for the Message page and redirect the user.
   revalidatePath("/dashboard/message");
   redirect("/dashboard/message");
-}
-export async function updateMessage(
-  id: string,
-  prevState: State,
-  formData: FormData
-) {
-  const validatedFields = UpdateMessage.safeParse({
-    answer: formData.get("answer"),
-    message: formData.get("message"),
-  });
-
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Message Invoice.",
-    };
-  }
-
-  const { answer, message } = validatedFields.data;
-
-  try {
-    await sql`
-      UPDATE invoices
-      SET answer = ${answer}, message=${message}
-      WHERE id = ${id}
-    `;
-  } catch (error) {
-    return { message: "Database Error: Failed to Update Message." };
-  }
-
-  revalidatePath("/dashboard/message");
-  redirect("/dashboard/message");
-}
-export async function deleteMessage(id: string) {
-  throw new Error("Failed to Delete Message");
-  try {
-    await sql`DELETE FROM messages WHERE id = ${id}`;
-    revalidatePath("/dashboard/message");
-    return { message: "Deleted message." };
-  } catch (error) {
-    return { message: "Database Error: Failed to Delete Message." };
-  }
 }

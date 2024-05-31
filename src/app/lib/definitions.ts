@@ -1,5 +1,5 @@
 export type Messages = {
   id: number;
-  answer?: string;
-  message?: string;
+  answer: string;
+  message: string;
 };
