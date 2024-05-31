@@ -1,6 +1,6 @@
 "use client";
 import { useModel } from "./context/modelContext";
-import Content from "./ui/content";
+import Content from "./ui/messages/content";
 import Header from "./ui/header";
 import Modal from "./ui/modal";
 export default function Home() {

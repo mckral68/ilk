@@ -1,5 +1,5 @@
 "use client";
-import { useModel } from "../context/modelContext";
+import { useModel } from "../../context/modelContext";
 import { useFormik } from "formik";
 import validations from "./validation";
 function Modal() {
