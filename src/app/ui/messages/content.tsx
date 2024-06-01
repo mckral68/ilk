@@ -5,12 +5,13 @@ import { useEffect, useRef, useState } from "react";
 
 const Content = () => {
   const audi = useRef<HTMLAudioElement>(null);
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   useEffect(() => {
     getCookie("cevap").then((a) => {
       a?.value === "A" ? setAudio(true) : setAudio(false);
+      console.log(audio);
     });
-  }, [setAudio]);
+  }, [audio, setAudio]);
   const pi = `Çölün kum taneleri arasında
   kayboluyorum serapların ortasında 
   gözlerimde, kulaklarımda kum yığınları
@@ -26,9 +27,7 @@ const Content = () => {
   return (
     <div className="">
       <div className="flex justify-center items-center mt-4 text-white">
-        {audio
-          ? ""
-          : "Bravo doğru cevap, ödül olarak aşağıdaki şarkıyı uygun gördük.Bakalım beğenecek misin?"}
+        Buraya aşağıdaki şarkıyı uygun gördüm.Bakalım beğenecek misin
       </div>
       <audio
         ref={audi}
@@ -36,7 +35,7 @@ const Content = () => {
         src="voice/ceceli.mp3"
         controls
         id="player"
-        className="mx-auto"
+        className="mt-5 mx-auto"
       ></audio>
       {audio ? <p className="mt-10">{pi}</p> : ""}
     </div>

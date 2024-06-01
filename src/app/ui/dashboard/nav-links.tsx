@@ -1,9 +1,5 @@
 "use client";
-import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
-} from "@heroicons/react/24/outline";
+import { HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";

@@ -6,14 +6,7 @@ import { createCookie } from "../lib/actions";
 function Modal() {
   const { setShow } = useModel();
 
-  const {
-    handleSubmit,
-    handleChange,
-    isSubmitting,
-    errors,
-    validateOnChange,
-    submitCount,
-  } = useFormik({
+  const { handleSubmit, handleChange, isSubmitting, errors } = useFormik({
     initialValues: {
       q: "",
     },

@@ -6,16 +6,6 @@ export default async function Page() {
   const messages = await fetchMessages();
   return (
     <main>
-      <Breadcrumbs
-        breadcrumbs={[
-          { label: "Mesajlar", href: "/dashboard/message" },
-          {
-            label: "Mesaj Gönder",
-            href: "/dashboard/message/create",
-            active: true,
-          },
-        ]}
-      />
       <Form messages={messages!} />
     </main>
   );

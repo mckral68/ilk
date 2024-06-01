@@ -1,13 +1,21 @@
+"use client";
+import Link from "next/link";
+import { HomeIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
+
 const Header = () => {
+  const pathName = usePathname();
+
   return (
-    <div className="flex justify-center items-center w-full px-4 ">
-      <div>
-        <h1 className="text-5xl font-signature mt-2">
-          <div className="link-underline text-center link-underline-black">
-            Hoş Geldin
-          </div>
-        </h1>
-      </div>
+    <div className="w-full m-2">
+      <Link className="flex" href={"/"}>
+        <HomeIcon height={22} />
+        Ana Sayfa
+      </Link>
+      <span></span>
+      {pathName === "/" && (
+        <div className="text-4xl text-center ">Hoş Geldin</div>
+      )}
     </div>
   );
 };
