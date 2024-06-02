@@ -4,14 +4,22 @@ import { Button } from "@/app/ui/button";
 import { useFormState } from "react-dom";
 import { createMessage } from "@/app/lib/actions";
 import { Messages } from "@/app/lib/definitions";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 export default function Form({ messages }: { messages: Messages[] }) {
   const initialState = { message: "", errors: {} };
+  const router = useRouter();
   const [state, dispatch] = useFormState(createMessage, initialState);
   const answers = [
-    { id: 1, value: "Hayatımda biri var" },
-    { id: 2, value: "Hayatımda biri yok,yine de istemiyorum" },
+    { id: 1, value: "Hayatımda biri var." },
+    { id: 2, value: "Hayatımda biri yok,yine de istemiyorum." },
     { id: 3, value: "Sınavdan sonra konuşabiliz." },
   ];
+  useEffect(() => {
+    state.message === "success"
+      ? (alert("Mesaj başarıyla iletildi"), router.push("/"))
+      : "";
+  }, [state, router]);
   return (
     <form action={dispatch}>
       <div className="rounded-md p-4 md:p-6">
@@ -25,11 +33,10 @@ export default function Form({ messages }: { messages: Messages[] }) {
               id="answer"
               name="answer"
               className="peer block text-black w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 "
-              defaultValue=""
               aria-describedby="answer-error"
             >
               <option value="" disabled>
-                Bir seçenek seç
+                Bir cevap seç
               </option>
               {answers.map((m) => (
                 <option key={m.id} value={m.value}>

@@ -51,10 +51,12 @@ export async function createMessage(prevState: State, formData: FormData) {
       message: "Database Error: Failed to Create message.",
     };
   }
-
+  return {
+    message: "success",
+  };
+  revalidatePath("/message");
+  redirect("/");
   // Revalidate the cache for the Message page and redirect the user.
-  revalidatePath("/dashboard/message");
-  redirect("/dashboard/message");
 }
 export async function createCookie(data: any) {
   cookies().set("cevap", data);

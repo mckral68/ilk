@@ -9,7 +9,6 @@ const Content = () => {
   useEffect(() => {
     getCookie("cevap").then((a) => {
       a?.value === "A" ? setAudio(true) : setAudio(false);
-      console.log(audio);
     });
   }, [audio, setAudio]);
   const pi = `Çölün kum taneleri arasında
