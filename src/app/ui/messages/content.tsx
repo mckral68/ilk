@@ -23,7 +23,7 @@ const Content = () => {
   return (
     <div className="">
       <div className="flex justify-center items-center mt-4 text-white">
-        Buraya aşağıdaki şarkıyı uygun gördüm.Bakalım beğenecek misin
+        Buraya aşağıdaki şarkıyı uygun gördüm.Bakalım beğenecek misin?
       </div>
       <Audio />
       {audio ? <p className="mt-10">{pi}</p> : ""}
