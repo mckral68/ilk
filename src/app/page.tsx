@@ -1,25 +1,26 @@
 "use client";
 import Content from "./ui/messages/content";
-import Modal from "./ui/modal";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
-import { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 export default function Home() {
   const { show, setShow } = useModel();
+  const Modal = React.lazy(() => import("@/app/ui/modal"));
   useEffect(() => {
     const isAnswered = localStorage.getItem("isAnswered");
-    console.log(isAnswered);
     isAnswered ? setShow(false) : setShow(true);
   }, [show, setShow]);
   return (
     <main>
       {show ? (
-        <>
+        <Suspense fallback={<div>Yükleniyor...</div>}>
           <Modal />
-        </>
+        </Suspense>
       ) : (
         <>
-          <Content />
+          <Suspense fallback={<div>Yükleniyor...</div>}>
+            <Content />
+          </Suspense>
           <div className="flex justify-center pt-20">
             <Link
               className="p-2 w-1/4 border text-center rounded-lg bg-black"
