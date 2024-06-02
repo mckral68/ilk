@@ -6,6 +6,8 @@ import { createMessage } from "@/app/lib/actions";
 import { Messages } from "@/app/lib/definitions";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Form({ messages }: { messages: Messages[] }) {
   const initialState = { message: "", errors: {} };
   const router = useRouter();
@@ -17,7 +19,8 @@ export default function Form({ messages }: { messages: Messages[] }) {
   ];
   useEffect(() => {
     state.message === "success"
-      ? (alert("Mesaj başarıyla iletildi"), router.push("/"))
+      ? (toast("Mesaj başarıyla iletildi"),
+        setTimeout(() => router.push("/"), 4000))
       : "";
   }, [state, router]);
   return (
@@ -89,6 +92,13 @@ export default function Form({ messages }: { messages: Messages[] }) {
         </Link>
         <Button type="submit">Gönder</Button>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={4000}
+        closeOnClick
+        transition={Flip}
+        pauseOnHover
+      />
     </form>
   );
 }
