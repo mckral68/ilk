@@ -1,11 +1,7 @@
-import React, { useRef } from "react";
-
-const Audio = ({ audio }: { audio: boolean }) => {
-  const audi = useRef<HTMLAudioElement>(null);
+const Audio = () => {
   return (
     <>
       <audio
-        ref={audi}
         src="voice/ceceli.mp3"
         controls
         id="player"
