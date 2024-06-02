@@ -18,9 +18,7 @@ export default function Home() {
         </Suspense>
       ) : (
         <>
-          <Suspense fallback={<div>Yükleniyor...</div>}>
-            <Content />
-          </Suspense>
+          <Content />
           <div className="flex justify-center pt-20">
             <Link
               className="p-2 w-1/4 border text-center rounded-lg bg-black"

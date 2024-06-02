@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Audio from "./audio";
+import react, { Suspense, useEffect, useState } from "react";
 const Content = () => {
   const [audio, setAudio] = useState(true);
+  const Audio = react.lazy(() => import("./audio"));
   useEffect(() => {
     const isAnswered = localStorage?.getItem("isAnswered");
     isAnswered ? setAudio(true) : setAudio(false);
@@ -25,7 +25,9 @@ const Content = () => {
       <div className="flex justify-center items-center mt-4 text-white">
         Buraya aşağıdaki şarkıyı uygun gördüm.Bakalım beğenecek misin?
       </div>
-      <Audio />
+      <Suspense fallback={<div>Yükleniyor...</div>}>
+        <Audio />
+      </Suspense>
       {audio ? <p className="mt-10">{pi}</p> : ""}
     </div>
   );
