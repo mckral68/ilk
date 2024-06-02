@@ -2,7 +2,6 @@
 import { useModel } from "../../context/modelContext";
 import { useFormik } from "formik";
 import validations from "./validation";
-import { createCookie } from "../lib/actions";
 function Modal() {
   const { setShow } = useModel();
 
@@ -11,7 +10,7 @@ function Modal() {
       q: "",
     },
     onSubmit: (values, bag) => {
-      createCookie(values.q);
+      localStorage.setItem("isAnswered", "true");
       values.q === "A" ? setShow(false) : "";
       bag.resetForm();
     },

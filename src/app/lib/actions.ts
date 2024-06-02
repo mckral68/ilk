@@ -1,5 +1,4 @@
 "use server";
-import { cookies } from "next/headers";
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
@@ -58,10 +57,4 @@ export async function createMessage(prevState: State, formData: FormData) {
   redirect("/");
   // Revalidate the cache for the Message page and redirect the user.
 }
-export async function createCookie(data: any) {
-  cookies().set("cevap", data);
-}
-export async function getCookie(data: string) {
-  const cevap = cookies().get(data);
-  return cevap;
-}
+

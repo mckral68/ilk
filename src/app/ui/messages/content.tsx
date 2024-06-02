@@ -1,15 +1,13 @@
 "use client";
 
-import { getCookie } from "@/app/lib/actions";
 import { useEffect, useRef, useState } from "react";
 
 const Content = () => {
   const audi = useRef<HTMLAudioElement>(null);
   const [audio, setAudio] = useState(true);
   useEffect(() => {
-    getCookie("cevap").then((a) => {
-      a?.value === "A" ? setAudio(true) : setAudio(false);
-    });
+    const isAnswered = localStorage.getItem("isAnswered");
+    isAnswered ? setAudio(true) : setAudio(false);
   }, [audio, setAudio]);
   const pi = `Çölün kum taneleri arasında
   kayboluyorum serapların ortasında 

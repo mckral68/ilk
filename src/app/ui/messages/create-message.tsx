@@ -4,12 +4,13 @@ import { Button } from "@/app/ui/button";
 import { useFormState } from "react-dom";
 import { createMessage } from "@/app/lib/actions";
 import { Messages } from "@/app/lib/definitions";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function Form({ messages }: { messages: Messages[] }) {
   const initialState = { message: "", errors: {} };
+  const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
   const [state, dispatch] = useFormState(createMessage, initialState);
   const answers = [
@@ -20,11 +21,12 @@ export default function Form({ messages }: { messages: Messages[] }) {
   useEffect(() => {
     state.message === "success"
       ? (toast("Mesaj başarıyla iletildi"),
+        formRef.current?.reset(),
         setTimeout(() => router.push("/"), 4000))
       : "";
   }, [state, router]);
   return (
-    <form action={dispatch}>
+    <form action={dispatch} ref={formRef}>
       <div className="rounded-md p-4 md:p-6">
         {/* Answer */}
         <div className="mb-4 ">
@@ -35,6 +37,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
             <select
               id="answer"
               name="answer"
+              defaultValue=""
               className="peer block text-black w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 "
               aria-describedby="answer-error"
             >
