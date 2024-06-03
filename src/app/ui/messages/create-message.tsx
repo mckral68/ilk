@@ -5,13 +5,12 @@ import { useFormState } from "react-dom";
 import { createMessage } from "@/app/lib/actions";
 import { Messages } from "@/app/lib/definitions";
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function Form({ messages }: { messages: Messages[] }) {
   const initialState = { message: "", errors: {} };
   const formRef = useRef<HTMLFormElement>(null);
-  const router = useRouter();
   const [state, dispatch] = useFormState(createMessage, initialState);
   const answers = [
     { id: 1, value: "Hayatımda biri var." },
@@ -22,11 +21,11 @@ export default function Form({ messages }: { messages: Messages[] }) {
     state.message === "success"
       ? (toast("Mesaj başarıyla iletildi"),
         formRef.current?.reset(),
-        setTimeout(() => router.push("/"), 4000))
+        setTimeout(() => redirect("/"), 4000))
       : "";
-  }, [state, router]);
+  }, [state]);
   return (
-    <form action={dispatch} ref={formRef}>
+    <form className="lg:w-1/2 mx-auto" action={dispatch} ref={formRef}>
       <div className="rounded-md p-4 md:p-6">
         {/* Answer */}
         <div className="mb-4 ">

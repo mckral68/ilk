@@ -2,7 +2,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 const ModelContext = createContext();
 export const ModelProvider = ({ children }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState();
+  useEffect(() => {
+    localStorage.getItem("isAnswered") ? setShow(false) : setShow(true);
+  }, [setShow]);
   const values = { show, setShow };
   return (
     <ModelContext.Provider value={values}>{children}</ModelContext.Provider>

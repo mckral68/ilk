@@ -2,14 +2,10 @@
 import Content from "./ui/messages/content";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
-import React, { useEffect, Suspense } from "react";
+import React, { Suspense } from "react";
 export default function Home() {
-  const { show, setShow } = useModel();
   const Modal = React.lazy(() => import("@/app/ui/modal"));
-  useEffect(() => {
-    const isAnswered = localStorage.getItem("isAnswered");
-    isAnswered ? setShow(false) : setShow(true);
-  }, [show, setShow]);
+  const { show, setShow } = useModel();
   return (
     <main>
       {show ? (
