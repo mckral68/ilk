@@ -2,7 +2,7 @@ import React from "react";
 
 const Siir = () => {
   return (
-    <div className="min-h-[600px] flex justify-center items-center">
+    <div className="min-h-[450px] flex justify-center items-center">
       <div className="text-start">
         Çölün kum taneleri arasında <br /> Kayboluyorum serapların ortasında
         <br />
