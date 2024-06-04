@@ -9,21 +9,31 @@ export default function Home() {
   const { show } = useModel();
   return (
     <main>
-      {show === true ? (
-        <Suspense fallback={<DashboardSkeleton></DashboardSkeleton>}></Suspense>
-      ) : show === false ? (
-        <>
-          <Content />
-          <div className="flex justify-center pt-20">
-            <Link
-              className="p-2 w-1/4 border text-center rounded-lg bg-black"
-              href={"message/create"}
+      <>
+        {show === true ? (
+          // Check directly for true
+          <>
+            <Suspense
+              fallback={<div className="text-center">Yükleniyor...</div>}
             >
-              İlerle
-            </Link>
-          </div>
-        </>
-      ) : null}
+              <Modal />
+            </Suspense>
+          </>
+        ) : show === false ? (
+          // Check directly for false
+          <>
+            <Content />
+            <div className="flex justify-center pt-20">
+              <Link
+                className="p-2 w-1/4 border text-center rounded-lg bg-black"
+                href={"message/create"}
+              >
+                İlerle
+              </Link>
+            </div>
+          </>
+        ) : null}
+      </>
     </main>
   );
 }
