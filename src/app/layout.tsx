@@ -17,6 +17,10 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.className} min-h-screen bg-yellow-400`}>
+        <script
+          src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"
+          async
+        ></script>
         <Header />
         <ModelProvider>{children}</ModelProvider>
       </body>

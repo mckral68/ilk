@@ -25,7 +25,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
       : "";
   }, [state]);
   return (
-    <form className="lg:w-1/2 mx-auto" action={dispatch} ref={formRef}>
+    <form className="lg:w-1/2 mx-auto mt-10" action={dispatch} ref={formRef}>
       <div className="rounded-md p-4 md:p-6">
         {/* Answer */}
         <div className="mb-4 ">

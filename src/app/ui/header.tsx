@@ -14,7 +14,7 @@ const Header = () => {
       </Link>
       <span></span>
       {pathName === "/" && (
-        <div className="text-4xl text-center ">Hoş Geldin</div>
+        <div className="text-4xl mt-3 text-center">☾ Hoş Geldin ☀</div>
       )}
     </div>
   );

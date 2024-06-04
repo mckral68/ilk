@@ -2,10 +2,11 @@
 import { useModel } from "../../context/modelContext";
 import { useFormik } from "formik";
 import validations from "./validation";
-import { Flip, ToastContainer, toast } from "react-toastify";
+import JSConfetti from "js-confetti";
 
 function Modal() {
   const { show, setShow } = useModel();
+  const jsConfetti = new JSConfetti();
   const { handleSubmit, handleChange, isSubmitting, errors } = useFormik({
     initialValues: {
       q: "",
@@ -13,10 +14,14 @@ function Modal() {
     onSubmit: (values, bag) => {
       localStorage.setItem("isAnswered", "true");
       values.q === "A"
-        ? setTimeout(() => {
-            toast("Bravo doğru cevap :) ");
+        ? (jsConfetti.addConfetti({
+            emojis: ["❤️", "💕", "💗", "💝"],
+            confettiRadius: 4,
+            confettiNumber: 100,
+          }),
+          setTimeout(() => {
             setShow(false);
-          }, 20)
+          }, 200))
         : "";
       bag.resetForm();
     },
@@ -84,13 +89,6 @@ function Modal() {
             </div>
           </div>
         </div>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={4000}
-          closeOnClick
-          transition={Flip}
-          pauseOnHover
-        />
       </form>
     </>
   );

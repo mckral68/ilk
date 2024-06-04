@@ -13,6 +13,8 @@ const Content = (params: { q: number }) => {
       return <Audio />;
     case 3:
       redirect("message/create");
+    default:
+      redirect("/");
   }
 };
 
