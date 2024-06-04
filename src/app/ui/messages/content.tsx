@@ -1,6 +1,7 @@
 "use client";
 
 import react, { Suspense, useEffect, useState } from "react";
+import { AudioSkeleton } from "../skeletons";
 const Content = () => {
   const [audio, setAudio] = useState(true);
   const Audio = react.lazy(() => import("./audio"));
@@ -25,7 +26,7 @@ const Content = () => {
       <div className="flex justify-center items-center mt-4 text-white">
         Buraya aşağıdaki şarkıyı uygun gördüm.Bakalım beğenecek misin?
       </div>
-      <Suspense fallback={<div>Yükleniyor...</div>}>
+      <Suspense fallback={<AudioSkeleton />}>
         <Audio />
       </Suspense>
       {audio ? <p className="mt-10">{pi}</p> : ""}

@@ -35,3 +35,12 @@ export default function DashboardSkeleton() {
     </>
   );
 }
+export function AudioSkeleton() {
+  return (
+    <>
+      <div
+        className={`${shimmer} relative mb-4 h-8 w-full overflow-hidden rounded-md bg-gray-100`}
+      />
+    </>
+  );
+}

@@ -3,31 +3,27 @@ import Content from "./ui/messages/content";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
 import React, { Suspense } from "react";
+import DashboardSkeleton from "./ui/skeletons";
 export default function Home() {
   const Modal = React.lazy(() => import("@/app/ui/modal"));
-  const { isDone, show, setShow } = useModel();
+  const { show } = useModel();
   return (
     <main>
-      {isDone &&
-        (show ? (
-          <>
-            <Suspense fallback={<div>Yükleniyor...</div>}>
-              <Modal />
-            </Suspense>
-          </>
-        ) : (
-          <>
-            <Content />
-            <div className="flex justify-center pt-20">
-              <Link
-                className="p-2 w-1/4 border text-center rounded-lg bg-black"
-                href={"message/create"}
-              >
-                İlerle
-              </Link>
-            </div>
-          </>
-        ))}
+      {show === true ? (
+        <Suspense fallback={<DashboardSkeleton></DashboardSkeleton>}></Suspense>
+      ) : show === false ? (
+        <>
+          <Content />
+          <div className="flex justify-center pt-20">
+            <Link
+              className="p-2 w-1/4 border text-center rounded-lg bg-black"
+              href={"message/create"}
+            >
+              İlerle
+            </Link>
+          </div>
+        </>
+      ) : null}
     </main>
   );
 }
