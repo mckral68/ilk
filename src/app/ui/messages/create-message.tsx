@@ -30,7 +30,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
         {/* Answer */}
         <div className="mb-4 ">
           <label htmlFor="answer" className="mb-2 block text-sm font-medium">
-            Cevap seç
+            Cevap
           </label>
           <div className="relative">
             <select
@@ -62,14 +62,14 @@ export default function Form({ messages }: { messages: Messages[] }) {
         {/* Invoice message */}
         <div className="mb-4">
           <label htmlFor="message" className="mb-2 block text-sm font-medium">
-            Mesajını gir
+            Mesaj
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
               <textarea
                 id="message"
                 name="message"
-                placeholder="Lütfen mesajını gir"
+                placeholder="Duygu, düşünce ve cevaplarını paylaşabilirsin."
                 className="peer block w-full text-black rounded-md border  border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="message-error"
               />

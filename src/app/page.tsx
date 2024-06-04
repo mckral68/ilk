@@ -1,9 +1,8 @@
 "use client";
-import Content from "./ui/messages/content";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import DashboardSkeleton from "./ui/skeletons";
+import Siir from "./ui/messages/siir";
 export default function Home() {
   const Modal = React.lazy(() => import("@/app/ui/modal"));
   const { show } = useModel();
@@ -22,10 +21,10 @@ export default function Home() {
         ) : show === false ? (
           // Check directly for false
           <>
-            <Content />
+            <Siir />
             <div className="flex justify-center pt-20">
               <Link
-                className="p-2 w-1/4 border text-center rounded-lg bg-black"
+                className="p-2 w-1/4 bg-white order text-center rounded-lg"
                 href={"message/create"}
               >
                 İlerle

@@ -32,9 +32,12 @@ function Modal() {
   ];
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="mt-4 bg-black overflow-y-auto text-white h-full w-full flex items-center justify-center">
-          <div className="p-4 border w-96 shadow-lg rounded-md">
+      <form
+        className="flex items-center justify-center"
+        onSubmit={handleSubmit}
+      >
+        <div className="mt-4 bg-red-500 xl:w-1/3 overflow-y-auto text-black h-full ">
+          <div className="p-4 border  shadow-lg rounded-md">
             <div className="text-center">
               <h3 className="text-2xl font-bold ">Merhaba</h3>
               <div className="mt-2 px-7 py-3">
