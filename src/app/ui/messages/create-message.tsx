@@ -53,7 +53,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
           <div id="answer-error" aria-live="polite" aria-atomic="true">
             {state.errors?.answer &&
               state.errors.answer.map((error: string) => (
-                <p className="mt-2 text-sm text-red-200" key={error}>
+                <p className="mt-2 text-sm " key={error}>
                   {error}
                 </p>
               ))}
@@ -69,7 +69,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
               <textarea
                 id="message"
                 name="message"
-                placeholder="Duygu, düşünce ve cevaplarını paylaşabilirsin."
+                placeholder="Duygu, düşünce ve istediğini yazabilirsin."
                 className="peer block w-full text-black rounded-md border  border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="message-error"
               />
@@ -77,7 +77,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
             <div id="message-error" aria-live="polite" aria-atomic="true">
               {state.errors?.message &&
                 state.errors.message.map((error: string) => (
-                  <p className="mt-2 text-sm text-red-200" key={error}>
+                  <p className="mt-2 text-sm " key={error}>
                     {error}
                   </p>
                 ))}

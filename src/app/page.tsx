@@ -1,11 +1,25 @@
 "use client";
 import { useModel } from "@/context/modelContext";
 import Link from "next/link";
-import React, { Suspense } from "react";
-import Siir from "./ui/messages/siir";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Content from "./ui/messages/content";
 export default function Home() {
   const Modal = React.lazy(() => import("@/app/ui/modal"));
   const { show } = useModel();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(0);
+  useEffect(() => {
+    setQuery(Number(searchParams.get("q")));
+  }, [searchParams]);
+  const createQueryString = useCallback(
+    (value: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("q", value.toString());
+      return params.toString();
+    },
+    [searchParams]
+  );
   return (
     <main>
       <>
@@ -21,14 +35,24 @@ export default function Home() {
         ) : show === false ? (
           // Check directly for false
           <>
-            <Siir />
-            <div className="flex justify-center pt-20">
-              <Link
-                className="p-2 w-1/4 bg-white order text-center rounded-lg"
-                href={"message/create"}
-              >
-                İlerle
-              </Link>
+            <Content q={query | 0} />
+            <div className="flex items-center justify-around pt-20">
+              <div hidden={query == 0}>
+                <Link
+                  href={"?" + createQueryString(query >= 1 ? query - 1 : 0)}
+                  className="py-2 px-6 w-1/3 bg-white order text-center rounded-lg"
+                >
+                  Geri
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href={"?" + createQueryString(query + 1)}
+                  className="py-2 px-6 w-1/3 bg-white order text-center rounded-lg"
+                >
+                  İleri
+                </Link>
+              </div>
             </div>
           </>
         ) : null}

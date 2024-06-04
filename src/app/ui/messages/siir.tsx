@@ -1,5 +1,4 @@
 import React from "react";
-
 const Siir = () => {
   return (
     <div className="min-h-[450px] flex justify-center items-center">
