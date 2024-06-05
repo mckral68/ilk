@@ -14,8 +14,8 @@ export default function Form({ messages }: { messages: Messages[] }) {
   const [state, dispatch] = useFormState(createMessage, initialState);
   const answers = [
     { id: 1, value: "Hayatımda biri var." },
-    { id: 2, value: "Hayatımda biri yok,yine de istemiyorum." },
-    { id: 3, value: "Sınavdan sonra konuşabiliz." },
+    { id: 2, value: "Hayatımda biri yok, yine de istemiyorum." },
+    { id: 3, value: "Sınavdan sonra konuşabiliriz." },
   ];
   useEffect(() => {
     state.message === "success"
@@ -37,7 +37,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
               id="answer"
               name="answer"
               defaultValue=""
-              className="peer block text-black w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 "
+              className="peer block text-black w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-5 text-sm outline-2 "
               aria-describedby="answer-error"
             >
               <option value="" disabled>
@@ -69,8 +69,8 @@ export default function Form({ messages }: { messages: Messages[] }) {
               <textarea
                 id="message"
                 name="message"
-                placeholder="Duygu, düşünce ve istediğini yazabilirsin."
-                className="peer block w-full text-black rounded-md border  border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                placeholder={"Duygu, düşünce veya istediğini yazabilirsin."}
+                className="block w-full text-black rounded-md border  border-gray-200 py-2 pl-5 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="message-error"
               />
             </div>

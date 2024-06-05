@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ModelProvider } from "@/context/modelContext";
 import Header from "./ui/header";
+import GoogleAnalytics from "./GoogleAnalytics";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Declaration of love",
@@ -16,11 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      <GoogleAnalytics />
       <body className={`${inter.className} min-h-screen bg-yellow-400`}>
-        <script
-          src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"
-          async
-        ></script>
         <Header />
         <ModelProvider>{children}</ModelProvider>
       </body>
