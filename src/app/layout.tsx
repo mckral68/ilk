@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <GoogleAnalytics />
-      <body className={`${inter.className} min-h-screen bg-yellow-400`}>
+      <body className={`${inter.className} min-h-screen bg-yellow-300`}>
         <Header />
         <ModelProvider>{children}</ModelProvider>
       </body>

@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import { redirect } from "next/navigation";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CountDown from "./countDown";
 export default function Form({ messages }: { messages: Messages[] }) {
   const initialState = { message: "", errors: {} };
   const formRef = useRef<HTMLFormElement>(null);
@@ -17,6 +18,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
     { id: 2, value: "Hayatımda biri yok, yine de istemiyorum." },
     { id: 3, value: "Sınavdan sonra konuşabiliriz." },
   ];
+
   useEffect(() => {
     state.message === "success"
       ? (toast("Mesaj başarıyla iletildi"),
@@ -25,10 +27,13 @@ export default function Form({ messages }: { messages: Messages[] }) {
       : "";
   }, [state]);
   return (
-    <form className="lg:w-1/2 mx-auto mt-10" action={dispatch} ref={formRef}>
-      <div className="rounded-md p-4 md:p-6">
-        {/* Answer */}
-        <div className="mb-4 ">
+    <form
+      className="lg:w-1/2 grid mx-auto h-screen mt-2"
+      action={dispatch}
+      ref={formRef}
+    >
+      <div className="rounded-md p-4 md:p-6 ">
+        <div className="mb-5 ">
           <label htmlFor="answer" className="mb-2 block text-sm font-medium">
             Cevap
           </label>
@@ -59,8 +64,7 @@ export default function Form({ messages }: { messages: Messages[] }) {
               ))}
           </div>
         </div>
-        {/* Invoice message */}
-        <div className="mb-4">
+        <div className="mb-5">
           <label htmlFor="message" className="mb-2 block text-sm font-medium">
             Mesaj
           </label>
@@ -84,8 +88,11 @@ export default function Form({ messages }: { messages: Messages[] }) {
             </div>
           </div>
         </div>
+        <>
+          <CountDown />
+        </>
       </div>
-      <div className="mt-6 flex justify-center gap-4">
+      <div className="flex self-end justify-around gap-4">
         <Link
           href="/"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"

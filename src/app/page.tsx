@@ -21,7 +21,7 @@ export default function Home() {
     [searchParams]
   );
   return (
-    <main>
+    <main className="grid min-h-max">
       <>
         {show === true ? (
           // Check directly for true
@@ -36,8 +36,8 @@ export default function Home() {
           // Check directly for false
           <>
             <Content q={query | 0} />
-            <div className="flex items-center justify-around pt-20">
-              <div hidden={query == 0}>
+            <div className="flex mt-10 justify-around">
+              <div className="self-center" hidden={query == 0}>
                 <Link
                   href={"?" + createQueryString(query >= 1 ? query - 1 : 0)}
                   className="py-2 px-6 w-1/3 bg-white order text-center rounded-lg"
@@ -45,10 +45,10 @@ export default function Home() {
                   Geri
                 </Link>
               </div>
-              <div>
+              <div className="self-center">
                 <Link
                   href={"?" + createQueryString(query + 1)}
-                  className="py-2 px-6 w-1/3 bg-white order text-center rounded-lg"
+                  className="py-2 px-6 w-1/3 bg-white rounded-lg"
                 >
                   İleri
                 </Link>
